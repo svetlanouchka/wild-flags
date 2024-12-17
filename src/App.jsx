@@ -14,7 +14,7 @@ import './App.css'
 
 // Affichez un menu déroulant permettant de sélectionner une région.
 
-// Si une région est sélectionnée, affichez uniquement les pays appartenant à cette région.
+// Si une région est sélectionnée, affichez uniquement  pays appartenant à cette région.
 
 function App() {
   const [count, setCount] = useState(0)
