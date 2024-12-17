@@ -3,31 +3,29 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+
+// Créez les états nécessaires avec useState:
+
+// Un état pour stocker les données des pays récupérées depuis l'API.
+// Un état pour gérer la région sélectionnée par l'utilisateur.
+// Une liste statique des régions pour le menu déroulant(ex. : "Europe", "Asia", etc.).
+// Utilisez le hook useEffect pour récupérer les données de l'API suivante au montage du composant :
+// URL de l'API : https://restcountries.com/v3.1/all
+
+// Affichez un menu déroulant permettant de sélectionner une région.
+
+// Si une région est sélectionnée, affichez uniquement les pays appartenant à cette région.
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Wild Flags</h1>
+      
     </>
   )
 }
