@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import axios from "axios";
+import CountryCard from "./components/CountryCard";
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [countries, setCountries] = useState([]);
+	const [region, setRegion] = useState("");
+	const listRegion = [
+		"Europe",
+		"Africa",
+		"Asia",
+		"Antarctic",
+		"Americas",
+		"Oceania",
+	];
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	useEffect(() => {
+		// Appel API avec Axios
+		const fetchCountries = async () => {
+			try {
+				const response = await axios.get("https://restcountries.com/v3.1/all");
+				console.log("response -->", response);
+				console.log("response.data -->", response.data);
+				setCountries(response.data); // Mettre à jour le state avec les données de l'API
+			} catch (err) {
+				setError("Erreur lors du chargement des pays");
+				console.error(err);
+			}
+		};
+		fetchCountries();
+	}, []);
+	console.log("countries", countries);
+	return (
+		<>
+			<select name="select-region" id="select-region">
+				{listRegion.map((region, index) => (
+					<option key={index} value={region}>
+						{region}
+					</option>
+				))}
+			</select>
+			{countries.map((country) => {
+				return <CountryCard key={country.ccn3} country={country} />;
+			})}
+		</>
+	);
 }
 
-export default App
+export default App;
